@@ -5,3 +5,4 @@ audit.log.jsonl
 audit.tiers.jsonl
 node_modules/
 testnet/.env
+audit*.jsonl
