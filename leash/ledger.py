@@ -13,7 +13,7 @@ from decimal import Decimal, InvalidOperation
 
 from .taint import AGENT_REASONING, Source, Tainted, Trust
 
-_ADDR = re.compile(r"\binj1[0-9a-z]{38}\b")
+_ADDR = re.compile(r"\binj1[0-9a-z]{38,58}\b")  # wallets (38) and contracts (58)
 _NUM = re.compile(r"(?<![\w.])\d+(?:\.\d+)?(?!\w)(?!\.\d)")
 
 
@@ -30,8 +30,9 @@ def _tokens(text: str) -> set[str]:
             toks.add(str(Decimal(n).normalize()))
         except InvalidOperation:
             pass
-    # words / symbols (denoms, markets, sides)
-    toks |= {w.lower() for w in re.findall(r"[A-Za-z][\w/.:-]*", text)}
+    # Words, denoms, markets. Trailing sentence punctuation must not hide a value:
+    # "send to inj1abc." has to match "inj1abc".
+    toks |= {w.lower().rstrip(".:-/") for w in re.findall(r"[A-Za-z][\w/.:-]*", text)}
     return toks
 
 

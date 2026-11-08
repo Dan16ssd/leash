@@ -20,7 +20,7 @@ ALICE = "inj1tcxflwq06lrj08rfxhrgm0v0n03mcdwstcxflw"
 BOB = "inj1pkhcujx6rexk3nphd84yh9cd7tva79vfpkhcuj"
 FUND = "inj1rlcmhfsaxx2dcehhdyn9ts7amhpx4xtdrlcmhf"
 ATTACKER = "inj1xtr2t4vjudz3s6xxkzy9dj6hgvk3wqgvxtr2t4"
-DRAINER = "inj1k9sm2vaw0fyqeu3hh5n8cl4xrpd7tgjz6qk9s"
+DRAINER = "inj1k9sm2vaw0fyqeu3hh5n8cl4xrpd7tgjz6qk9sm"
 
 
 @dataclass
