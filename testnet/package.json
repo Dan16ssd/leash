@@ -1,0 +1,19 @@
+{
+  "name": "leash-testnet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "@injectivelabs/networks": "1.20.62",
+    "@injectivelabs/sdk-ts": "1.20.62",
+    "@injectivelabs/utils": "1.20.62"
+  }
+}

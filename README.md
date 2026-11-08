@@ -62,6 +62,20 @@ Scenario 3 is the one limit-based policies can't catch: the sale is small enough
 every limit, but the side, size and price all came from a tweet. Every decision is
 written to `audit.log.jsonl` with the provenance of each field.
 
+## On Injective testnet
+
+The signer is the only part that holds a key, and Leash calls it only after ALLOW or the
+owner's approval. Testnet keys live in `testnet/.env`, which is git-ignored.
+
+```
+cd testnet && npm install && node signer.mjs keygen
+# fund the printed agent address at https://testnet.faucet.injective.network/
+cd .. && python testnet_demo.py
+```
+
+The owner's payment to Alice is broadcast on `injective-888` and gets an explorer link.
+The poisoned-invoice payment is blocked by Leash and never reaches the chain.
+
 ## Agent tiers: trust is earned, never claimed
 
 ```

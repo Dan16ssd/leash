@@ -3,3 +3,5 @@ __pycache__/
 audit.log.jsonl
 .venv/
 audit.tiers.jsonl
+node_modules/
+testnet/.env
