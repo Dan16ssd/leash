@@ -32,7 +32,8 @@ The agent is treated as a black box. Leash does not need to trust or inspect its
 | Stage | What | Status |
 |---|---|---|
 | Prototype | Context ledger, provenance checks, policy engine, RWA holder rule, agent tiers from audit history, approval flow, audit log, simulated signer | **done (this repo)** |
-| Testnet | Proxy in front of Injective's MCP server; real `MsgSend` / spot orders on Injective testnet; oracle prices | next |
+| Testnet | Real `MsgSend` on Injective testnet through Leash | **done** |
+| Agent integration | Proxy in front of Injective's MCP server with a real LLM agent; spot orders; oracle prices | next |
 | On-chain guard | Agent key gets only `authz` grants; a CosmWasm guard contract enforces tier limits and RWA rules so a compromised agent *or* proxy still can't move funds | next |
 | Mainnet | Policy dashboard, SDK for agent frameworks, open attack benchmark | later |
 
@@ -75,6 +76,10 @@ cd .. && python testnet_demo.py
 
 The owner's payment to Alice is broadcast on `injective-888` and gets an explorer link.
 The poisoned-invoice payment is blocked by Leash and never reaches the chain.
+
+First live run (2026-11-08): owner's 0.01 INJ payment
+[496CC73D…4A56](https://testnet.explorer.injective.network/transaction/496CC73D775A4C983C4BEDC6E93F70A30616AC4964B2E4E09ECB8C21514E4A56)
+was signed and confirmed; the injected payment to `inj1xtr2…tr2t4` was blocked and never broadcast.
 
 ## Agent tiers: trust is earned, never claimed
 

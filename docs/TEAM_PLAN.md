@@ -23,7 +23,8 @@ A firewall for AI agents on Injective.
 | Stage | What | Status |
 |---|---|---|
 | Prototype | Ledger, provenance check, policy, RWA rule, tiers, audit log, 2 demos, 17 tests | ✅ done |
-| Testnet | Real transfers + spot orders on Injective testnet via MCP server | ⬜ next |
+| Testnet | Real transfers on Injective testnet through Leash | ✅ done (first tx 2026-11-08) |
+| Agent integration | Real LLM agent via Injective MCP server, spot orders | ⬜ next |
 | On-chain guard | CosmWasm contract + authz enforces tier limits and RWA rules | ⬜ hacker house |
 | Mainnet | SDK, dashboard, pilot users | ⬜ later |
 
@@ -39,12 +40,12 @@ A firewall for AI agents on Injective.
 | Doable in 10 days | 8 |
 | Business potential | 7.5 |
 | Team credibility | 7 |
-| Current progress | 6 |
-| **Overall** | **~8.3 (≈8.5 once repo is public)** |
+| Current progress | 7.5 |
+| **Overall** | **~8.8 (≈9 once repo is public)** |
 
 ### How to raise the score
 
-- [ ] Real Injective testnet transaction (+0.7)
+- [x] Real Injective testnet transaction (+0.7)
 - [ ] Public GitHub repo + 60-second demo video (+0.4)
 - [ ] One Injective builder says "we'd use this" (+0.3)
 - [ ] Privacy shown in the prototype, e.g. private limits (+0.2)
@@ -128,7 +129,7 @@ Leash blocks 3/3 attacks. A limit-only wallet auto-signs 1 and leaves 2 to a hum
 - **Description (≤250 chars):** Leash tracks where every number in an AI agent's Injective transaction came from. If the amount or recipient traces back to a tweet, webpage or token metadata instead of the owner, it won't sign. Rules are enforced on-chain, not by trust.
 - **Category:** AI & agents
 - **Stage:** Prototype
-- **What have you shipped:** Working prototype: Leash traces every field of an agent's proposed Injective transaction back to what the agent read and blocks 3/3 prompt-injection attacks in our demo (poisoned invoice, tweet, token metadata), while a limit-only wallet auto-signs 1. Agent tiers built from audit history: new agents start with small limits, repeated injection attempts revoke them. Includes RWA holder whitelist, approval flow and audit log. Next: Injective testnet, then on-chain CosmWasm guard.
+- **What have you shipped:** Working prototype: Leash traces every field of an agent's proposed Injective transaction back to what the agent read and blocks 3/3 prompt-injection attacks in our demo (poisoned invoice, tweet, token metadata), while a limit-only wallet auto-signs 1. Agent tiers built from audit history: new agents start with small limits, repeated injection attempts revoke them. Includes RWA holder whitelist, approval flow and audit log. Live on Injective testnet: owner's payment broadcast, injected payment blocked before reaching the chain. Next: real LLM agent via Injective's MCP server, then on-chain CosmWasm guard.
 - **Team size:** 4 · **In person:** 4
 - **Need help with:** Injective Integration, Technical Mentorship, Ecosystem Partnerships
 - **Anything else:** AI agents can now sign trades on Injective from a single prompt. One prompt injection can drain a wallet or send a permissioned RWA token to the wrong holder. Leash lets funds and RWA issuers trust autonomous agents with real assets. Free SDK for agent builders; paid hosted policy + audit for funds and RWA issuers.
