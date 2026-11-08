@@ -120,7 +120,7 @@ tr:last-child td { border-bottom: none; }
 td:first-child { font-family: var(--mono); font-size: 0.88rem; white-space: nowrap; }
 
 /* Roles + roadmap */
-.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
 .card h3 { margin: 0; font: 700 1.1rem var(--display); }
 .card .who { font: 600 0.75rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--leash); }
@@ -285,13 +285,12 @@ footer { color: var(--muted); font-size: 0.85rem; font-family: var(--mono); }
   </section>
 
   <section aria-labelledby="roles-h">
-    <div class="eyebrow">Team of 4</div>
+    <div class="eyebrow">Team of 3</div>
     <h2 id="roles-h">Who owns which box</h2>
-    <div class="grid4">
+    <div class="grid3">
       <div class="card"><div class="who">Danny</div><h3>Ledger + proxy</h3><p>Boxes 1–2. Make provenance work with a real LLM agent and Injective's MCP server. Fix the "send half" case: agent-computed values need owner confirmation.</p></div>
       <div class="card"><div class="who">Teammate 2</div><h3>On-chain guard</h3><p>The "hardware ACL". A CosmWasm contract plus <code>authz</code> grants, so limits and RWA rules hold even if Leash is bypassed. Needs Rust.</p></div>
-      <div class="card"><div class="who">Teammate 3</div><h3>Red team</h3><p>The untrusted zone. Write poisoned invoices, tweets and token names, and turn them into an attack benchmark that every build must pass.</p></div>
-      <div class="card"><div class="who">Teammate 4</div><h3>Dashboard + pitch</h3><p>Boxes 3–5 for humans. Policy editor, approval button, log viewer. Owns the demo video and the Demo Day pitch on Dec 9.</p></div>
+      <div class="card"><div class="who">Teammate 3</div><h3>Red team + pitch</h3><p>The untrusted zone: poisoned invoices, tweets and token names, turned into an attack benchmark every build must pass. Also the dashboard (policy editor, approve button, log viewer), demo video and the Demo Day pitch on Dec 9.</p></div>
     </div>
   </section>
 
@@ -299,8 +298,8 @@ footer { color: var(--muted); font-size: 0.85rem; font-family: var(--mono); }
     <div class="eyebrow">Stages</div>
     <h2 id="road-h">Where we are</h2>
     <div class="road">
-      <div class="now"><span class="st">Now · Prototype</span><b>Local firewall</b><p>Ledger, provenance check, ACL, RWA rule, verdicts, log. Simulated signer. 9 tests pass.</p></div>
-      <div><span class="st">Next · Testnet</span><b>Real Injective</b><p>Proxy in front of the MCP server, real transfers and spot orders on testnet, oracle prices.</p></div>
+      <div class="now"><span class="st">Done · Prototype</span><b>Local firewall</b><p>Ledger, provenance check, ACL, RWA rule, verdicts, log. Simulated signer. 9 tests pass.</p></div>
+      <div class="now"><span class="st">Done · Testnet</span><b>Real Injective</b><p>Owner's payment broadcast on injective-888; injected payment blocked before reaching the chain.</p></div>
       <div><span class="st">Hacker house</span><b>On-chain guard</b><p>CosmWasm contract + authz, RWA holder rules on-chain, dashboard, attack benchmark.</p></div>
       <div><span class="st">Later · Mainnet</span><b>SDK + pilots</b><p>One-line plug-in for agent frameworks; hosted policy and audit for funds and RWA issuers.</p></div>
     </div>
