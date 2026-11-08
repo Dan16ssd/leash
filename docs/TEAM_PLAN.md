@@ -1,7 +1,7 @@
 # Leash: Team Plan
 
 **Injective Hacker House Bangkok** · Dec 1–10, 2026 · Demo Day Dec 9
-**Applications close: Nov 10, 2026.** Every team member submits their own form (project "Leash", team size 4).
+**Applications close: Nov 10, 2026.** Every team member submits their own form (project "Leash", team size 3).
 
 Form: https://xsxo494365r.typeform.com/to/zeKuqtdg
 
@@ -39,14 +39,15 @@ A firewall for AI agents on Injective.
 | Originality | 8.5 |
 | Doable in 10 days | 8 |
 | Business potential | 7.5 |
-| Team credibility | 7 |
-| Current progress | 7.5 |
-| **Overall** | **~8.8 (≈9 once repo is public)** |
+| Team credibility | 7.5 |
+| Current progress | 8 |
+| **Overall** | **~8.8** |
 
 ### How to raise the score
 
 - [x] Real Injective testnet transaction (+0.7)
-- [ ] Public GitHub repo + 60-second demo video (+0.4)
+- [x] Public GitHub repo: https://github.com/Dan16ssd/leash
+- [ ] 60-second demo video (+0.2)
 - [ ] One Injective builder says "we'd use this" (+0.3)
 - [ ] Privacy shown in the prototype, e.g. private limits (+0.2)
 
@@ -57,26 +58,25 @@ A firewall for AI agents on Injective.
 | Part | Difficulty | Time | Owner |
 |---|---|---|---|
 | Prototype (ledger, policy, tiers) | done | done | Danny |
-| Testnet transfers via Injective TS SDK | 4/10 | 0.5–1 day | Danny |
+| Testnet transfers via Injective TS SDK | done | done | Danny |
 | Proxy in front of Injective MCP server + real LLM agent | 6/10 | 2–3 days | Danny |
 | Agent-computed values ("send half") | 7/10 | 2 days | Danny |
 | CosmWasm guard contract + authz (**needs Rust**) | 8/10 | 4–6 days | Teammate 2 |
 | Attack suite / benchmark | 4/10 | 2–3 days | Teammate 3 |
-| Dashboard + demo video + pitch | 3/10 | 2–3 days | Teammate 4 |
+| Dashboard + demo video + pitch | 3/10 | 2–3 days | Teammate 3 |
 | ZK proof of AI model inference | 10/10, **don't do it** | n/a | n/a |
 
-**Overall difficulty: ~6/10.** Biggest risk: the CosmWasm contract. Start learning it now.
+**Overall difficulty: ~6.5/10 for 3 people.** Biggest risk: the CosmWasm contract. Start learning it now. If it slips, the off-chain Leash + testnet demo still carries Demo Day.
 
 ---
 
-## 5. Team roles
+## 5. Team roles (3 people)
 
 | Who | Owns | Start now |
 |---|---|---|
 | **Danny** | Ledger + proxy + testnet integration | Injective TS SDK testnet transfer |
 | **Teammate 2** | On-chain guard (CosmWasm + authz) | Rust + CosmWasm tutorial, Injective testnet deploy |
-| **Teammate 3** | Red team: poisoned invoices, tweets, token names → benchmark | Write 20 attack cases |
-| **Teammate 4** | Dashboard, demo video, Demo Day pitch | 60-second demo video of `demo.py` + `tiers_demo.py` |
+| **Teammate 3** | Red team (poisoned invoices, tweets, token names → benchmark) + dashboard, demo video, Demo Day pitch | Record 60-second demo video, write 20 attack cases |
 
 ---
 
@@ -130,7 +130,7 @@ Leash blocks 3/3 attacks. A limit-only wallet auto-signs 1 and leaves 2 to a hum
 - **Category:** AI & agents
 - **Stage:** Prototype
 - **What have you shipped:** Working prototype: Leash traces every field of an agent's proposed Injective transaction back to what the agent read and blocks 3/3 prompt-injection attacks in our demo (poisoned invoice, tweet, token metadata), while a limit-only wallet auto-signs 1. Agent tiers built from audit history: new agents start with small limits, repeated injection attempts revoke them. Includes RWA holder whitelist, approval flow and audit log. Live on Injective testnet: owner's payment broadcast, injected payment blocked before reaching the chain. Next: real LLM agent via Injective's MCP server, then on-chain CosmWasm guard.
-- **Team size:** 4 · **In person:** 4
+- **Team size:** 3 · **In person:** 3
 - **Need help with:** Injective Integration, Technical Mentorship, Ecosystem Partnerships
 - **Anything else:** AI agents can now sign trades on Injective from a single prompt. One prompt injection can drain a wallet or send a permissioned RWA token to the wrong holder. Leash lets funds and RWA issuers trust autonomous agents with real assets. Free SDK for agent builders; paid hosted policy + audit for funds and RWA issuers.
 
@@ -144,5 +144,4 @@ Leash blocks 3/3 attacks. A limit-only wallet auto-signs 1 and leaves 2 to a hum
 - [ ] Danny submits form
 - [ ] Teammate 2 submits form
 - [ ] Teammate 3 submits form
-- [ ] Teammate 4 submits form
 - [ ] Check Dec 1–10 attendance for everyone
