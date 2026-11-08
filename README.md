@@ -31,9 +31,9 @@ The agent is treated as a black box. Leash does not need to trust or inspect its
 
 | Stage | What | Status |
 |---|---|---|
-| Prototype | Context ledger, provenance checks, policy engine, RWA holder rule, approval flow, audit log, simulated signer | **done (this repo)** |
+| Prototype | Context ledger, provenance checks, policy engine, RWA holder rule, agent tiers from audit history, approval flow, audit log, simulated signer | **done (this repo)** |
 | Testnet | Proxy in front of Injective's MCP server; real `MsgSend` / spot orders on Injective testnet; oracle prices | next |
-| On-chain guard | Agent key gets only `authz` grants; a CosmWasm guard contract enforces limits and RWA rules so a compromised agent *or* proxy still can't move funds | next |
+| On-chain guard | Agent key gets only `authz` grants; a CosmWasm guard contract enforces tier limits and RWA rules so a compromised agent *or* proxy still can't move funds | next |
 | Mainnet | Policy dashboard, SDK for agent frameworks, open attack benchmark | later |
 
 ## Demo
@@ -62,6 +62,42 @@ Scenario 3 is the one limit-based policies can't catch: the sale is small enough
 every limit, but the side, size and price all came from a tweet. Every decision is
 written to `audit.log.jsonl` with the provenance of each field.
 
+## Agent tiers: trust is earned, never claimed
+
+```
+python tiers_demo.py
+```
+
+Every agent gets a score from 0 to 100, **rebuilt only from Leash's own audit log**. It is
+not self-reported and not a model proof. The tier decides how much of the owner's policy
+the agent can use. A tier can only tighten the owner's limits, never loosen them.
+
+| Tier | How you get there | Per-tx max | Auto-approve up to | Daily |
+|---|---|---|---|---|
+| Untrusted | every new identity starts here (score 20) | $50 | $20 | $100 |
+| Verified | score ≥ 40 | $500 | $100 | $1,000 |
+| Elite | score ≥ 80, ≥ 30 signed tx, no injection in last 20 events | $5,000 | $1,000 | $20,000 |
+| Revoked | 3 blocked injection attempts | $0 | n/a | $0 |
+
+| Event | Score |
+|---|---|
+| signed tx | +2 (capped at +60 total, so routine activity alone stops at 80) |
+| owner approved a flagged tx | +3 |
+| owner rejected a flagged tx | −5 |
+| blocked by policy | −2 |
+| blocked because a field came from untrusted content | −15 |
+
+Defences built into the design:
+- **Fake new identities:** a fresh ID always starts Untrusted, so minting one buys nothing.
+- **Reputation farming, then rug pull:** any tx more than 3× the agent's largest past tx
+  needs the owner's approval, even for Elite.
+- **Prompt injection on a trusted agent:** the provenance check still blocks it, whatever
+  the score is. Reputation sets limits; it never replaces the per-transaction check.
+
+From the demo: `yield-bot` earns Verified, falls for a poisoned pool notice three times and
+is revoked. `rebal-bot` reaches Elite, then asks to move 50× its biggest tx. Leash sends it
+to the owner, the owner says no, and the agent drops back to Verified.
+
 ## Tests
 
 ```
@@ -79,6 +115,7 @@ No dependencies beyond Python 3.10+.
 | `leash/tx.py` | Injective-shaped messages (`MsgSend`, spot market order) |
 | `leash/policy.py` | Owner policy loaded from JSON (`policy.example.json`) |
 | `leash/guard.py` | Verdicts: ALLOW / NEEDS_APPROVAL / BLOCK, plus the audit log |
+| `leash/reputation.py` | Agent score and tiers, replayed from the audit log |
 | `leash/proxy.py` | Glue: tag → evaluate → approve → sign |
 
 ## Known limitations (prototype)

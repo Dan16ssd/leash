@@ -49,10 +49,14 @@ class LeashProxy:
     def submit(self, raw: dict, ledger: ContextLedger) -> Result:
         msg = self.tag(raw, ledger)
         d = self.guard.evaluate(msg)
-        approved = d.verdict is Verdict.ALLOW or (
-            d.verdict is Verdict.NEEDS_APPROVAL and self.approver(msg, d))
         tx_hash = None
-        if approved:
+        if d.verdict is Verdict.ALLOW:
             tx_hash = self.signer(msg)
             self.guard.commit(msg)
+        elif d.verdict is Verdict.NEEDS_APPROVAL:
+            if self.approver(msg, d):
+                tx_hash = self.signer(msg)
+                self.guard.commit(msg, approved_by_owner=True)
+            else:
+                self.guard.reject(msg)
         return Result(msg, d, tx_hash)

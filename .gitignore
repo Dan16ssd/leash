@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 audit.log.jsonl
 .venv/
+audit.tiers.jsonl
