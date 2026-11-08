@@ -1,0 +1,16 @@
+{
+  "max_tx_usd": 500,
+  "approval_above_usd": 100,
+  "daily_limit_usd": 1000,
+  "allowed_recipients": {
+    "inj1tcxflwq06lrj08rfxhrgm0v0n03mcdwstcxflw": "Alice (designer)",
+    "inj1pkhcujx6rexk3nphd84yh9cd7tva79vfpkhcuj": "Bob (contractor)",
+    "inj1rlcmhfsaxx2dcehhdyn9ts7amhpx4xtdrlcmhf": "Fund treasury"
+  },
+  "allowed_denoms": ["inj", "usdt", "tbill"],
+  "allowed_markets": ["INJ/USDT"],
+  "rwa_holders": {
+    "tbill": ["inj1rlcmhfsaxx2dcehhdyn9ts7amhpx4xtdrlcmhf"]
+  },
+  "prices_usd": {"inj": 20, "usdt": 1, "tbill": 100}
+}
